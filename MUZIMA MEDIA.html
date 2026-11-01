@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MUZIMA MEDIA</title>
+<style>
+:root{--bg:#07060d;--card:#121022;--line:#241f3d;--p:#8b5cf6;--b:#3b82f6;--t:#f1effa;--m:#9a96b8;--g:linear-gradient(135deg,#8b5cf6,#3b82f6);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--t);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;background-image:radial-gradient(900px 400px at 85% -5%,#3b82f633,transparent),radial-gradient(800px 400px at 5% 0,#8b5cf633,transparent);background-repeat:no-repeat}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#07060dee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{max-width:1280px;margin:auto;display:flex;align-items:center;gap:16px;padding:12px 18px;flex-wrap:wrap}
+.logo{font-weight:900;letter-spacing:.12em;font-size:20px;display:flex;align-items:center;gap:8px}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;place-items:center;font-style:normal;font-size:16px;letter-spacing:0}
+.logo b{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.search{flex:1;min-width:200px;max-width:460px}
+input,select,button,textarea{font:inherit;color:var(--t)}
+.search input{width:100%;padding:10px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);outline:0}
+input:focus,select:focus{border-color:var(--p)}
+.auth{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:14px}
+.btn{border:1px solid var(--line);background:var(--card);padding:9px 16px;border-radius:99px;cursor:pointer;font-weight:600}
+.btn.pri{background:var(--g);border:0}
+.btn.dng{color:#fca5a5}
+.btn:hover{filter:brightness(1.2)}
+nav{max-width:1280px;margin:auto;display:flex;gap:4px;padding:0 14px 10px;overflow-x:auto;scrollbar-width:none}
+nav a{padding:7px 16px;border-radius:99px;color:var(--m);font-weight:600;white-space:nowrap}
+nav a.on{background:#8b5cf62b;color:#fff;box-shadow:inset 0 0 0 1px #8b5cf688}
+main{max-width:1280px;margin:auto;padding:22px 18px 60px}
+.hero{border-radius:22px;padding:42px 32px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;margin-bottom:12px}
+.hero h1{font-size:clamp(28px,5vw,52px);margin:6px 0;line-height:1.05}
+.hero p{max-width:520px;color:#ddd8f5;margin:0 0 18px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#cfc6ff}
+h2{font-size:21px;margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:5px;height:20px;border-radius:3px;background:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px}
+.card{cursor:pointer;transition:transform .15s}
+.card:hover{transform:translateY(-4px)}
+.art{aspect-ratio:1/1;border-radius:14px;position:relative;display:grid;place-items:center;overflow:hidden;background-size:cover;background-position:center;border:1px solid #ffffff14}
+.card.w .art{aspect-ratio:2/3}
+.card.v .art{aspect-ratio:16/10}
+.g{font-size:46px;opacity:.55}
+.tag{position:absolute;top:8px;left:8px;background:#000a;border-radius:6px;padding:1px 8px;font-size:11px;font-weight:700}
+.pl{position:absolute;right:10px;bottom:10px;width:40px;height:40px;border-radius:50%;background:var(--g);display:grid;place-items:center;opacity:0;transform:translateY(8px);transition:.2s}
+.card:hover .pl,.card:focus .pl{opacity:1;transform:none}
+.card h4{margin:9px 0 0;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card p{margin:0;font-size:13px;color:var(--m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.chip{padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:14px;color:var(--m)}
+.chip.on{background:var(--g);color:#fff;border:0}
+.empty{color:var(--m);padding:30px 0}
+.modal{position:fixed;inset:0;background:#000d;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;overflow:auto}
+.modal.open{display:flex}
+.box{background:#0e0c1b;border:1px solid var(--line);border-radius:18px;padding:22px;width:100%;max-width:440px;position:relative}
+.box.big{max-width:760px}
+.x{position:absolute;right:12px;top:10px;background:none;border:0;font-size:26px;cursor:pointer;color:var(--m)}
+.box h3{margin:0 0 4px}
+label{display:block;font-size:13px;color:var(--m);margin:12px 0 4px}
+.f input,.f select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);outline:0}
+canvas{width:100%;aspect-ratio:16/9;border-radius:12px;background:#000;display:block;margin:12px 0}
+video,audio{width:100%;border-radius:12px}
+video{background:#000;margin-top:12px}
+audio{margin-top:6px}
+.msg{font-size:13px;color:#fca5a5;min-height:18px;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat b{font-size:26px;display:block;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.adm{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+@media(max-width:900px){.adm{grid-template-columns:1fr}.hero{padding:26px 20px}}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--m);font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.note{font-size:13px;color:var(--m)}
+footer{border-top:1px solid var(--line);color:var(--m);text-align:center;padding:24px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+ <div class="bar">
+  <a class="logo" href="#home"><i>♪</i><span>MUZIMA <b>MEDIA</b></span></a>
+  <div class="search"><input id="q" type="search" placeholder="Search music, movies, artists, countries…" aria-label="Search"></div>
+  <div class="auth" id="auth"></div>
+ </div>
+ <nav id="nav"></nav>
+</header>
+<main id="app"></main>
+<footer>© 2026 MUZIMA MEDIA · Music, movies and culture from around the world</footer>
+
+<div class="modal" id="m-player"><div class="box big"><button class="x" data-close>×</button><div id="player"></div></div></div>
+<div class="modal" id="m-auth"><div class="box f"><button class="x" data-close>×</button><div id="authbox"></div></div></div>
+
+<script>
+/* ============ CONFIG ============ */
+const CFG={
+  SUPABASE_URL:'',            // e.g. https://xxxx.supabase.co  (future)
+  SUPABASE_ANON_KEY:'',       // public anon key (future)
+  ADMIN_EMAIL:'admin@muzimamedia.com',
+  ADMIN_PASS:'Muzima@2026'    // DEMO ONLY – replaced by Supabase Auth + role check
+};
+/* ============ DATA LAYER (swap body for Supabase) ============
+ Suggested table  media(id uuid pk, type text, title text, artist text, country text,
+   category text, year int, views int, featured bool, hue int, src text, created_at timestamptz, published bool)
+ RLS: select where published=true for everyone; insert/update/delete only when auth.jwt()->>'email' = admin.
+ Example later:  const {data}=await sb.from('media').select('*').eq('published',true)               */
+const LS=(k,v)=>{try{if(v===undefined){const r=localStorage.getItem(k);return r?JSON.parse(r):null}localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
+const COUNTRIES=['Uganda','Canada','USA','Nigeria','South Africa','Norway','Kenya','Ghana','UK','Brazil'];
+const TYPES={music:'Music',video:'Music Video',movie:'Movie',audio:'Audio',picture:'Picture'};
+const G={music:'♫',video:'▶',movie:'▣',audio:'◉',picture:'❖'};
+function seed(){
+ const raw={
+  music:'Sunrise on the Nile|Kenzo Bright|Uganda|Afrobeat;Kampala Nights|Amara Lule|Uganda|Pop;Maple Road|Jules Tremblay|Canada|Indie;Northern Lights Song|Ava Clarke|Canada|Folk;Neon Highway|Dre Collins|USA|Hip Hop;Southern Soul|Maya Brooks|USA|Soul;Lagos Lights|Tobi Ade|Nigeria|Afrobeats;Jollof Groove|Nkem Obi|Nigeria|Afropop;Table Mountain|Thandi Dube|South Africa|Amapiano;Joburg Sunset|Sipho Mkhize|South Africa|House;Fjord Dreams|Ingrid Solberg|Norway|Electronic;Midnight Sun|Lars Nordby|Norway|Ambient',
+  video:'Sunrise on the Nile (Video)|Kenzo Bright|Uganda|Afrobeat;Neon Highway (Live)|Dre Collins|USA|Hip Hop;Lagos Lights (Official)|Tobi Ade|Nigeria|Afrobeats;Table Mountain (Visualizer)|Thandi Dube|South Africa|Amapiano;Maple Road (Session)|Jules Tremblay|Canada|Indie;Fjord Dreams (Official)|Ingrid Solberg|Norway|Electronic',
+  movie:'Pearl of Africa|Muzima Studios|Uganda|Drama;The Last Ferry|North Reel|Canada|Thriller;Desert Highway|Bluestone Films|USA|Action;Lagos Wedding Week|Naija Pictures|Nigeria|Comedy;Cape Horizon|Kasi Cinema|South Africa|Adventure;Winter Harbour|Fjell Film|Norway|Mystery;Source of the River|Muzima Studios|Uganda|Documentary;City of Gold|Atlas Pictures|USA|Sci-Fi',
+  audio:'Luganda Folk Tales, Ep. 1|Muzima Stories|Uganda|Podcast;Tech Talk Africa|Digital Voices|Nigeria|Podcast;Calm Forest Sounds|Nordic Calm|Norway|Relaxation;Hockey Night Debrief|Prairie Radio|Canada|Sports;Morning Devotion|Grace Hour|South Africa|Spiritual;Audiobook: The River Spirit|Muzima Books|Uganda|Audiobook',
+  picture:'Murchison Falls|Muzima Gallery|Uganda|Nature;Banff at Dawn|Photo Collective|Canada|Landscape;Brooklyn Rooftops|Urban Eye|USA|City;Lagos Market Colours|Naija Lens|Nigeria|Culture;Cape Town Coast|Kasi Frames|South Africa|Landscape;Lofoten Aurora|Fjell Photo|Norway|Nature;Kampala Boda Rush|Muzima Gallery|Uganda|Street;Niagara Mist|Photo Collective|Canada|Nature'};
+ let n=0;const out=[];
+ for(const t in raw)raw[t].split(';').forEach(s=>{const [title,artist,country,category]=s.split('|');n++;
+  out.push({id:'s'+n,type:t,title,artist,country,category,year:2024+(n%3),views:Math.round(900+((n*7919)%9000)),featured:n%5==1,hue:(n*47)%360,src:'',added:Date.now()-n*86400000*2,published:true})});
+ return out}
+const db={
+ async list(){let d=LS('mm_media');if(!d){d=seed();LS('mm_media',d)}return d},
+ async save(all){LS('mm_media',all)},
+ async create(i){const a=await this.list();a.push(i);await this.save(a)},
+ async update(id,p){const a=await this.list();const x=a.find(m=>m.id==id);if(x)Object.assign(x,p);await this.save(a)},
+ async remove(id){await this.save((await this.list()).filter(m=>m.id!=id))}
+};
+/* ============ AUTH (demo; replace with Supabase Auth) ============ */
+const auth={
+ user:()=>LS('mm_session'),
+ isAdmin(){const u=this.user();return !!u&&u.admin===true},
+ login(e,p){e=e.trim().toLowerCase();
+  if(e===CFG.ADMIN_EMAIL&&p===CFG.ADMIN_PASS){LS('mm_session',{email:e,admin:true});return true}
+  const u=(LS('mm_users')||[]).find(x=>x.email===e&&x.p===btoa(p));
+  if(u){LS('mm_session',{email:e,name:u.name,admin:false});return true}return false},
+ register(n,e,p){e=e.trim().toLowerCase();const us=LS('mm_users')||[];
+  if(e===CFG.ADMIN_EMAIL||us.some(x=>x.email===e))return false;
+  us.push({name:n,email:e,p:btoa(p)});LS('mm_users',us);LS('mm_session',{email:e,name:n,admin:false});return true},
+ logout(){LS('mm_session',null)}
+};
+/* ============ HELPERS ============ */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>n>=1000?(n/1000).toFixed(1)+'K':n;
+const artStyle=i=>i.type==='picture'&&i.src?`background-image:url('${esc(i.src)}')`:`background:linear-gradient(135deg,hsl(${i.hue} 70% 38%),hsl(${(i.hue+70)%360} 80% 16%))`;
+const cls=i=>i.type==='movie'?'w':(i.type==='video'?'v':'');
+const card=i=>`<div class="card ${cls(i)}" data-id="${i.id}" tabindex="0"><div class="art" style="${artStyle(i)}">${i.type==='picture'&&i.src?'':`<span class="g">${G[i.type]}</span>`}<span class="tag">${esc(i.country)}</span><span class="pl">${i.type==='picture'?'⤢':'▶'}</span></div><h4>${esc(i.title)}</h4><p>${esc(i.artist)} · ${fmt(i.views)} views</p></div>`;
+const row=(t,l)=>l.length?`<h2>${t}</h2><div class="grid">${l.map(card).join('')}</div>`:'';
+let ALL=[],FILTER={c:'All'},QUERY='';
+/* demo audio: generated melody as WAV */
+function wav(s,secs=14){const sr=11025,n=sr*secs,pen=[0,2,4,7,9,12,14],base=196+(s%7)*14;
+ const b=new DataView(new ArrayBuffer(44+n*2));const w=(o,t)=>[...t].forEach((c,k)=>b.setUint8(o+k,c.charCodeAt(0)));
+ w(0,'RIFF');b.setUint32(4,36+n*2,true);w(8,'WAVEfmt ');b.setUint32(16,16,true);b.setUint16(20,1,true);b.setUint16(22,1,true);b.setUint32(24,sr,true);b.setUint32(28,sr*2,true);b.setUint16(32,2,true);b.setUint16(34,16,true);w(36,'data');b.setUint32(40,n*2,true);
+ const nl=sr*.35|0;let r=s*9301+49297;
+ for(let i=0;i<n;i++){const k=(i/nl)|0;r=(r*9301+49297)%233280;const step=pen[(k*3+(r%3)+s)%7];const f=base*Math.pow(2,step/12);const e=Math.exp(-(i%nl)/nl*3.2);
+  const v=(Math.sin(2*Math.PI*f*i/sr)*.5+Math.sin(2*Math.PI*f*2*i/sr)*.15+Math.sin(2*Math.PI*base/2*i/sr)*.2*(k%4<2?1:.6))*e*.6;
+  b.setInt16(44+i*2,v*32000,true)}
+ let bin='';const u=new Uint8Array(b.buffer);for(let i=0;i<u.length;i+=8192)bin+=String.fromCharCode.apply(null,u.subarray(i,i+8192));
+ return 'data:audio/wav;base64,'+btoa(bin)}
+/* ============ VIEWS ============ */
+const NAV=[['home','Home'],['music','Music'],['videos','Music Videos'],['movies','Movies'],['audio','Audio'],['pictures','Pictures']];
+const TYPE_OF={music:'music',videos:'video',movies:'movie',audio:'audio',pictures:'picture'};
+async function render(){
+ ALL=(await db.list());const pub=ALL.filter(m=>m.published);
+ const page=(location.hash.slice(1)||'home');
+ $('#nav').innerHTML=NAV.map(([h,l])=>`<a href="#${h}" class="${page===h?'on':''}">${l}</a>`).join('')+(auth.isAdmin()?`<a href="#admin" class="${page==='admin'?'on':''}">Dashboard</a>`:'');
+ const u=auth.user();
+ $('#auth').innerHTML=u?`<span class="note">${esc(u.admin?'Admin':(u.name||u.email))}</span>${u.admin?'<a class="btn" href="#admin">Dashboard</a>':''}<button class="btn" id="b-out">Log out</button>`:`<button class="btn" id="b-in">Login</button><button class="btn pri" id="b-reg">Register</button>`;
+ const app=$('#app');
+ if(QUERY){const q=QUERY.toLowerCase();const r=pub.filter(m=>(m.title+m.artist+m.country+m.category+TYPES[m.type]).toLowerCase().includes(q));
+  app.innerHTML=`<h2>Results for “${esc(QUERY)}”</h2>${r.length?`<div class="grid">${r.map(card).join('')}</div>`:'<div class="empty">Nothing found. Try another artist, title or country.</div>'}`;return}
+ if(page==='admin'){return adminView(app)}
+ if(TYPE_OF[page]){const t=TYPE_OF[page];let l=pub.filter(m=>m.type===t);
+  const cs=['All',...COUNTRIES.filter(c=>l.some(m=>m.country===c))];
+  if(FILTER.c!=='All')l=l.filter(m=>m.country===FILTER.c);
+  app.innerHTML=`<h2>${NAV.find(n=>n[0]===page)[1]}</h2><div class="chips">${cs.map(c=>`<span class="chip ${FILTER.c===c?'on':''}" data-c="${esc(c)}">${esc(c)}</span>`).join('')}</div>${l.length?`<div class="grid">${l.sort((a,b)=>b.added-a.added).map(card).join('')}</div>`:'<div class="empty">No published content here yet.</div>'}`;return}
+ /* home */
+ const feat=pub.filter(m=>m.featured);const hero=feat[0]||pub[0];
+ const latest=[...pub].sort((a,b)=>b.added-a.added).slice(0,8),pop=[...pub].sort((a,b)=>b.views-a.views).slice(0,8);
+ const mus=pub.filter(m=>m.type==='music'||m.type==='video');
+ const cs=['All',...COUNTRIES.filter(c=>mus.some(m=>m.country===c))];
+ const cm=mus.filter(m=>FILTER.c==='All'||m.country===FILTER.c).slice(0,12);
+ app.innerHTML=(hero?`<div class="hero" style="${artStyle(hero)}"><div class="eyebrow">Featured ${TYPES[hero.type]} · ${esc(hero.country)}</div><h1>${esc(hero.title)}</h1><p>${esc(hero.artist)} — stream it free on MUZIMA MEDIA, home to music, movies and culture from every corner of the world.</p><div><button class="btn pri" data-id="${hero.id}">▶ Play now</button></div></div>`:'')
+  +row('Featured music &amp; movies',feat.filter(m=>m!==hero).slice(0,8))+row('Latest uploads',latest)+row('Popular content',pop)
+  +`<h2>Music by country</h2><div class="chips">${cs.map(c=>`<span class="chip ${FILTER.c===c?'on':''}" data-c="${esc(c)}">${esc(c)}</span>`).join('')}</div><div class="grid">${cm.map(card).join('')}</div>`;
+}
+function open(id){
+ const i=ALL.find(m=>m.id==id);if(!i)return;
+ i.views++;db.update(i.id,{views:i.views});
+ let h=`<h3>${esc(i.title)}</h3><div class="note">${esc(i.artist)} · ${esc(i.country)} · ${esc(i.category)} · ${i.year}</div>`;
+ if(i.type==='picture')h+=i.src?`<img src="${esc(i.src)}" alt="${esc(i.title)}" style="width:100%;border-radius:12px;margin-top:12px">`:`<div class="art" style="${artStyle(i)};aspect-ratio:16/10;margin-top:12px"><span class="g" style="font-size:90px">❖</span></div>`;
+ else if(i.src&&(i.type==='movie'||i.type==='video'))h+=`<video controls autoplay playsinline src="${esc(i.src)}"></video>`;
+ else if(i.src)h+=`<audio controls autoplay src="${esc(i.src)}"></audio>`;
+ else h+=`<canvas id="cv" width="640" height="360"></canvas><audio id="au" controls autoplay></audio><div class="note" style="margin-top:8px">Demo playback with sample content. Real media is added by the administrator.</div>`;
+ $('#player').innerHTML=h;$('#m-player').classList.add('open');
+ const au=$('#au');if(au){au.src=wav(+String(i.id).replace(/\D/g,'')||3);au.play().catch(()=>{});visual($('#cv'),au,i)}
+}
+let raf;function visual(cv,au,i){cancelAnimationFrame(raf);const c=cv.getContext('2d');const f=()=>{const t=au.currentTime,W=cv.width,H=cv.height,pl=!au.paused;
+ const g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,`hsl(${i.hue} 70% 22%)`);g.addColorStop(1,`hsl(${(i.hue+70)%360} 80% 8%)`);c.fillStyle=g;c.fillRect(0,0,W,H);
+ const n=48,bw=W/n;for(let k=0;k<n;k++){const a=pl?(Math.sin(t*5+k*.6)+Math.sin(t*3.1+k*1.3)+2.2)/4.2:.08;const h=a*H*.6;c.fillStyle=`hsl(${(i.hue+k*3)%360} 90% 65%)`;c.fillRect(k*bw+2,H-h-20,bw-4,h)}
+ c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText(i.title,24,44);c.font='16px sans-serif';c.fillStyle='#ffffffbb';c.fillText(i.artist,24,70);
+ raf=requestAnimationFrame(f)};f()}
+function closeAll(){cancelAnimationFrame(raf);document.querySelectorAll('.modal').forEach(m=>m.classList.remove('open'));$('#player').innerHTML=''}
+/* ============ AUTH MODAL ============ */
+function authModal(reg){
+ $('#authbox').innerHTML=`<h3>${reg?'Create your account':'Welcome back'}</h3><div class="note">${reg?'Register to save your favourites (visitors can browse and play without an account).':'Log in to MUZIMA MEDIA.'}</div>
+ ${reg?'<label>Name</label><input id="a-n" autocomplete="name">':''}<label>Email</label><input id="a-e" type="email" autocomplete="email"><label>Password</label><input id="a-p" type="password" autocomplete="${reg?'new-password':'current-password'}">
+ <div class="msg" id="a-m"></div><button class="btn pri" id="a-go" style="width:100%;margin-top:6px">${reg?'Register':'Login'}</button>
+ <p class="note" style="text-align:center;cursor:pointer" id="a-sw">${reg?'Already registered? Login':'New here? Create an account'}</p>`;
+ $('#m-auth').classList.add('open');
+ $('#a-sw').onclick=()=>authModal(!reg);
+ $('#a-go').onclick=()=>{const e=$('#a-e').value,p=$('#a-p').value,n=reg?$('#a-n').value.trim():'';
+  if(!e.includes('@')||p.length<6||(reg&&!n)){$('#a-m').textContent='Enter a valid email and a password of 6+ characters'+(reg?' and your name.':'.');return}
+  const ok=reg?auth.register(n,e,p):auth.login(e,p);
+  if(!ok){$('#a-m').textContent=reg?'That email is already in use.':'Incorrect email or password.';return}
+  closeAll();render()}
+}
+/* ============ ADMIN ============ */
+let EDIT=null;
+async function adminView(app){
+ if(!auth.isAdmin()){app.innerHTML=`<div class="panel" style="max-width:460px;margin:40px auto;text-align:center"><h3>Administrator access only</h3><p class="note">Please log in with the administrator account to upload, edit or delete media.</p><button class="btn pri" id="b-in2">Administrator login</button></div>`;return}
+ const a=await db.list(),e=EDIT&&a.find(m=>m.id==EDIT)||{};
+ const cnt=t=>a.filter(m=>m.type===t).length;
+ app.innerHTML=`<h2>Admin dashboard</h2><div class="stats"><div class="stat"><b>${a.length}</b>Total items</div><div class="stat"><b>${cnt('music')+cnt('video')}</b>Music &amp; videos</div><div class="stat"><b>${cnt('movie')}</b>Movies</div><div class="stat"><b>${cnt('audio')}</b>Audio</div><div class="stat"><b>${cnt('picture')}</b>Pictures</div><div class="stat"><b>${fmt(a.reduce((s,m)=>s+m.views,0))}</b>Total views</div></div>
+ <div class="adm" style="margin-top:20px"><div class="tw"><table><tr><th>Title</th><th>Type</th><th>Country</th><th>Status</th><th></th></tr>${a.map(m=>`<tr><td>${esc(m.title)}</td><td>${TYPES[m.type]}</td><td>${esc(m.country)}</td><td>${m.published?'Published':'Hidden'}</td><td><button class="btn" data-edit="${m.id}">Edit</button> <button class="btn dng" data-del="${m.id}">Delete</button></td></tr>`).join('')}</table></div>
+ <div class="panel f"><h3>${e.id?'Edit media':'Upload new media'}</h3>
+ <label>Type</label><select id="f-t">${Object.entries(TYPES).map(([k,v])=>`<option value="${k}" ${e.type===k?'selected':''}>${v}</option>`).join('')}</select>
+ <label>Title</label><input id="f-ti" value="${esc(e.title)}"><label>Artist / creator</label><input id="f-a" value="${esc(e.artist)}">
+ <label>Country</label><select id="f-c">${COUNTRIES.map(c=>`<option ${e.country===c?'selected':''}>${c}</option>`).join('')}</select>
+ <label>Category / genre</label><input id="f-g" value="${esc(e.category)}"><label>Year</label><input id="f-y" type="number" value="${e.year||2026}">
+ <label>Media file (this session only in demo)</label><input id="f-f" type="file" accept="audio/*,video/*,image/*">
+ <label>…or media URL (permanent)</label><input id="f-u" placeholder="https://…" value="${esc(e.src&&!e.src.startsWith('blob:')?e.src:'')}">
+ <label><input type="checkbox" id="f-ft" style="width:auto" ${e.featured?'checked':''}> Featured on homepage</label>
+ <label><input type="checkbox" id="f-p" style="width:auto" ${e.id&&!e.published?'':'checked'}> Published (visible to visitors)</label>
+ <div class="msg" id="f-m"></div><button class="btn pri" id="f-save" style="width:100%">${e.id?'Save changes':'Add media'}</button>${e.id?'<button class="btn" id="f-cancel" style="width:100%;margin-top:8px">Cancel</button>':''}
+ <p class="note">Demo data lives in this browser. The data layer is ready to be switched to Supabase.</p></div></div>`;
+}
+async function saveForm(){
+ if(!auth.isAdmin())return;
+ const ti=$('#f-ti').value.trim();if(!ti){$('#f-m').textContent='Title is required.';return}
+ const file=$('#f-f').files[0];let src=$('#f-u').value.trim();if(file)src=URL.createObjectURL(file);
+ const p={type:$('#f-t').value,title:ti,artist:$('#f-a').value.trim()||'Unknown',country:$('#f-c').value,category:$('#f-g').value.trim()||'General',year:+$('#f-y').value||2026,featured:$('#f-ft').checked,published:$('#f-p').checked};
+ if(src||!EDIT)p.src=src;
+ if(EDIT)await db.update(EDIT,p);else await db.create({...p,id:'u'+Date.now(),views:0,hue:Math.floor(Math.random()*360),added:Date.now()});
+ EDIT=null;render()
+}
+/* ============ EVENTS ============ */
+document.addEventListener('click',async e=>{
+ const t=e.target;
+ const c=t.closest('[data-id]');if(c){open(c.dataset.id);return}
+ if(t.dataset.close!==undefined||t.classList.contains('modal')){closeAll();return}
+ const ch=t.closest('.chip');if(ch){FILTER.c=ch.dataset.c;render();return}
+ if(t.id==='b-in'||t.id==='b-in2')authModal(false);
+ if(t.id==='b-reg')authModal(true);
+ if(t.id==='b-out'){auth.logout();location.hash==='#admin'?location.hash='#home':0;render()}
+ if(t.id==='f-save')saveForm();
+ if(t.id==='f-cancel'){EDIT=null;render()}
+ if(t.dataset.edit&&auth.isAdmin()){EDIT=t.dataset.edit;render();scrollTo(0,0)}
+ if(t.dataset.del&&auth.isAdmin()&&confirm('Delete this item permanently?')){await db.remove(t.dataset.del);render()}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();if(e.key==='Enter'&&e.target.classList.contains('card'))open(e.target.dataset.id)});
+$('#q').addEventListener('input',e=>{QUERY=e.target.value.trim();render()});
+addEventListener('hashchange',()=>{FILTER.c='All';QUERY='';$('#q').value='';render()});
+render();
+</script>
+</body>
+</html>
